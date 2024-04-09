@@ -71,7 +71,7 @@ router.post("/signin", async (req, res) => {
 			{
 				userId: user._id,
 			},
-			JWT_SECRET
+			process.env.JWT_SECRET
 		);
 
 		res.json({
