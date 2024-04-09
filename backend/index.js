@@ -2,7 +2,6 @@ const express = require("express");
 const rootRouter = require("./routes")
 const userRouter = require("./routes/user")
 const cors = require("cors")
-const {JWT_SECRET} = require("./config")
 
 
 const app = express()
