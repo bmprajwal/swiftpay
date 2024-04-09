@@ -4,6 +4,6 @@ Welcome to Swift Pay - a modern payment application designed to simplify your fi
 
 ## Features
 
-- **Backend:** Manages user authentication, account creation, and transactions.
+- **Backend:** Manages user authentication, account creation, updation and transactions.
 - **Frontend:** Provides a user-friendly interface for interacting with the Swift Pay platform.
 
