@@ -16,7 +16,7 @@ const signupBody = z.object({
 router.post("/signup", async (req, res) => {
 	const { success } = signupBody.safeParse(req.body);
 	if (!success) {
-		return req.status(411).json({
+		return res.status(411).json({
 			message: "Email already taken / Invalid inputs",
 		});
 	}
@@ -116,16 +116,16 @@ router.get("/bulk", authMiddleware, async (req, res) => {
 	const filter = req.query.filter || "";
 
 	const users = await User.find({
-		_id: {$ne: req.userId}, 
+		_id: { $ne: req.userId },
 		$or: [
 			{
 				firstName: {
-					"$regex": filter,
+					$regex: new RegExp(filter, "i"),
 				},
 			},
 			{
 				lastName: {
-					"$regex": filter,
+					$regex: new RegExp(filter, "i"),
 				},
 			},
 		],
