@@ -1,5 +1,6 @@
 import axios from "axios"
 import { useState } from "react";
+import {useNavigate} from "react-router-dom"
 import { BottomWarning } from "../components/BottomWarning";
 import { Button } from "../components/Button";
 import { Heading } from "../components/Heading";
@@ -7,7 +8,7 @@ import { InputBox } from "../components/InputBox";
 import { SubHeading } from "../components/SubHeading";
 
 export function Signup() {
-
+	const navigate = useNavigate()
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
   const [username, setUsername] = useState("")
@@ -44,6 +45,7 @@ export function Signup() {
 					}
 				);
             localStorage.setItem("token", res.data.token)
+						navigate("/dashboard")
             }} label={"Sign up"} />
 					</div>
 					<BottomWarning
