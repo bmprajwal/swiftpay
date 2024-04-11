@@ -1,12 +1,16 @@
 import { useState } from "react"
-import {useSearchParams} from "react-router-dom"
+import {useSearchParams, useNavigate} from "react-router-dom"
 import axios from "axios"
+
+
 export function SendMoney() {
   const [searchParams] = useSearchParams()
   const toId = searchParams.get("id")
   const firstName = searchParams.get("firstName")
   const lastName = searchParams.get("lastName")
   const [amount,setAmount] = useState(0)
+  const [transferMsg, setTransferMsg] = useState(null)
+  const navigate = useNavigate()
 
 	return <div className="bg-gray-100 h-screen flex justify-center">
       <div className="h-full flex flex-col justify-center">
@@ -41,11 +45,19 @@ export function SendMoney() {
                       Authorization: "Bearer " + localStorage.getItem("token")
                     }
                   })
+                  setTransferMsg(res.data.message)
+                  setTimeout(()=> {
+                    navigate("/dashboard")
+                  }, 2000)
+
                 }} className="justify-center rounded-md text-sm font-medium bg-green-500 hover:bg-green-600 text-white h-10 w-full py-2 px-4">Initiate Transfer</button>
               </div>
             </div>
           </div>
         </div>
+        {transferMsg && (<div className="text-center mt-5 bg-green-200 rounded-md py-3 text-green-800">
+          {transferMsg}!
+        </div>)}
       </div>
   </div>;
 }
